@@ -1,6 +1,6 @@
 [project]
 name = "comfyui-henjicc"
-version = "0.1.0"
+version = "0.1.1"
 description = "Media input and library, reference images, resolution tools, local prompt assistants, MiniMax H3 adapters and audio mixing for ComfyUI."
 license = {file = "LICENSE"}
 requires-python = ">=3.10"
