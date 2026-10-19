@@ -171,7 +171,9 @@ class VisualPromptTests(unittest.TestCase):
             Image.new("RGB", (100, 200), "red").save(root / "image.png")
             with av.open(str(root / "video.mp4"), "w") as container:
                 stream = container.add_stream("mpeg4", rate=10)
-                stream.width = 64; stream.height = 32; stream.pix_fmt = "yuv420p"
+                stream.width = 64
+                stream.height = 32
+                stream.pix_fmt = "yuv420p"
                 for index in range(110):
                     frame = av.VideoFrame.from_ndarray(np.full((32, 64, 3), index, dtype=np.uint8), format="rgb24")
                     for packet in stream.encode(frame): container.mux(packet)
@@ -195,7 +197,8 @@ class VisualPromptTests(unittest.TestCase):
             # Timestamp text is actually present in the bottom band.
             sheet = visual.contact_sheet(groups[1][1])
             self.assertGreater(np.array(sheet)[-34:].max(), 200)
-            state["items"] = state["items"][:1]; state["prompt"] = []
+            state["items"] = state["items"][:1]
+            state["prompt"] = []
             with self.assertRaisesRegex(ValueError, "visual asset"):
                 visual.prepare_visual_inputs(root, state, 2, 10, 10)
 

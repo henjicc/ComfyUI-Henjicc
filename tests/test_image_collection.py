@@ -80,7 +80,8 @@ class ImageCollectionTests(unittest.TestCase):
         result, masks = collection.convert_collection(images, "batch", "custom", 6, 6, "crop", "#ffffff")
         self.assertEqual(tuple(result[0].shape), (2, 6, 6, 3))
         self.assertTrue(torch.allclose(masks[0][1], torch.full((6, 6), 127/255)))
-        exif = Image.Exif(); exif[274] = 6
+        exif = Image.Exif()
+        exif[274] = 6
         Image.new("RGB", (8, 4)).save(self.root / "rotate.jpg", exif=exif)
         self.state["items"][0]["path"] = "rotate.jpg"
         self.assertEqual(tuple(self.load()[0][0].image.shape), (1, 8, 4, 3))

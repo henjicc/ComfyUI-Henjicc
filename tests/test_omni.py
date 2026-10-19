@@ -42,11 +42,15 @@ class OmniInputsTests(unittest.TestCase):
             root = Path(tmp)
             Image.new("RGB", (100, 200), "red").save(root / "image.png")
             with wave.open(str(root / "tone.wav"), "wb") as f:
-                f.setnchannels(1); f.setsampwidth(2); f.setframerate(16000)
+                f.setnchannels(1)
+                f.setsampwidth(2)
+                f.setframerate(16000)
                 f.writeframes(np.zeros(64000, dtype=np.int16).tobytes())
             with av.open(str(root / "video.mp4"), "w") as container:
                 stream = container.add_stream("mpeg4", rate=30)
-                stream.width = 64; stream.height = 32; stream.pix_fmt = "yuv420p"
+                stream.width = 64
+                stream.height = 32
+                stream.pix_fmt = "yuv420p"
                 for i in range(90):
                     frame = av.VideoFrame.from_ndarray(np.full((32, 64, 3), i, dtype=np.uint8), format="rgb24")
                     for packet in stream.encode(frame): container.mux(packet)

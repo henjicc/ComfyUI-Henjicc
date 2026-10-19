@@ -259,7 +259,9 @@ class MediaTests(unittest.TestCase):
     def test_audio_decode_and_duration_limit(self):
         path = self.root / "voice.wav"
         with wave.open(str(path), "wb") as out:
-            out.setnchannels(1); out.setsampwidth(2); out.setframerate(8000)
+            out.setnchannels(1)
+            out.setsampwidth(2)
+            out.setframerate(8000)
             out.writeframes(np.zeros(8000, dtype=np.int16).tobytes())
         audio = media.load_audio(path)
         self.assertEqual(audio["sample_rate"], 32000)
@@ -317,7 +319,10 @@ class MediaTests(unittest.TestCase):
     def test_video_timestamp_resampling_and_pixel_budget(self):
         path = self.root / "video.mp4"
         with av.open(str(path), "w") as container:
-            stream = container.add_stream("mpeg4", rate=12); stream.width = 64; stream.height = 32; stream.pix_fmt = "yuv420p"
+            stream = container.add_stream("mpeg4", rate=12)
+            stream.width = 64
+            stream.height = 32
+            stream.pix_fmt = "yuv420p"
             for i in range(12):
                 frame = av.VideoFrame.from_ndarray(np.full((32, 64, 3), i * 15, dtype=np.uint8), format="rgb24")
                 for packet in stream.encode(frame): container.mux(packet)

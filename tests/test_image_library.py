@@ -21,7 +21,9 @@ class ImageLibraryTests(unittest.TestCase):
         from io import BytesIO
         with av.open(str(self.root / "clip.mp4"), "w") as container:
             stream = container.add_stream("mpeg4", rate=24)
-            stream.width = 64; stream.height = 32; stream.pix_fmt = "yuv420p"
+            stream.width = 64
+            stream.height = 32
+            stream.pix_fmt = "yuv420p"
             for packet in stream.encode(av.VideoFrame.from_ndarray(np.full((32, 64, 3), 180, dtype=np.uint8), format="rgb24")):
                 container.mux(packet)
             for packet in stream.encode(): container.mux(packet)
@@ -46,14 +48,17 @@ class ImageLibraryTests(unittest.TestCase):
         path=self.root / "tone.wav"
         def write_tone(frequency):
             with wave.open(str(path),"wb") as file:
-                file.setnchannels(1);file.setsampwidth(2);file.setframerate(8000)
+                file.setnchannels(1)
+                file.setsampwidth(2)
+                file.setframerate(8000)
                 file.writeframes(b"".join(struct.pack("<h",int(16000*math.sin(i*frequency/8000*math.tau))) for i in range(8000)))
         write_tone(440)
         data=self.library.thumbnail("tone.wav")
         with Image.open(BytesIO(data)) as image:
             self.assertEqual(image.size,(640,160))
         cache=self.library.database.parent / "cache" / "waveforms"
-        first=list(cache.glob("*.webp"));self.assertEqual(len(first),1)
+        first=list(cache.glob("*.webp"))
+        self.assertEqual(len(first),1)
         stamp=first[0].stat().st_mtime_ns
         self.assertEqual(self.library.thumbnail("tone.wav"),data)
         self.assertEqual(first[0].stat().st_mtime_ns,stamp)
@@ -109,7 +114,8 @@ class ImageLibraryTests(unittest.TestCase):
         destination = Path(self.temp.name) / "another-input"
         destination.mkdir()
         with (self.root / "large.png").open("wb") as file:
-            file.seek(512 * 1024 * 1024); file.write(b"x")
+            file.seek(512 * 1024 * 1024)
+            file.write(b"x")
         with self.assertRaisesRegex(ValueError, "512 MB"):
             self.library.import_to_input(["large.png"], destination)
         self.assertFalse((destination / "henjicc").exists())
