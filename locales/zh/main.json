@@ -1,0 +1,82 @@
+{
+  "nodeCategories": {
+    "Henjicc": "痕继痕迹",
+    "Image": "图像",
+    "Media": "素材",
+    "Qwen": "千问",
+    "Video": "视频",
+    "Audio": "音频"
+  },
+  "settingsCategories": {
+    "Henjicc": "痕继痕迹",
+    "HenjiccImageLibrary": "资源库"
+  },
+  "settings": {
+    "Henjicc_ImageLibrary_SingleClickUse": {
+      "name": "单击直接使用素材"
+    },
+    "Henjicc_ImageLibrary_DoubleClickPreview": {
+      "name": "双击放大预览"
+    },
+    "Henjicc_ImageLibrary_DoubleClickDelay": {
+      "name": "双击识别间隔（毫秒）"
+    },
+    "Henjicc_ImageLibrary_CropThumbnails": {
+      "name": "裁剪缩略图以填满"
+    },
+    "Henjicc_ImageLibrary_InjectLoadImage": {
+      "name": "增强原生加载图像的图片选择"
+    },
+    "Henjicc_ImageLibrary_ShowImageNames": {
+      "name": "始终显示图片文件名"
+    },
+    "Henjicc_ImageLibrary_ShowVideoNames": {
+      "name": "始终显示视频文件名"
+    },
+    "Henjicc_ImageLibrary_ShowAudioNames": {
+      "name": "始终显示音频文件名"
+    },
+    "Henjicc_ImageLibrary_ShowExtensions": {
+      "name": "显示文件扩展名"
+    },
+    "Henjicc_ImageLibrary_ShowRatings": {
+      "name": "显示素材星标"
+    },
+    "Henjicc_ImageLibrary_ShowTags": {
+      "name": "显示素材标签"
+    },
+    "Henjicc_ImageLibrary_HoverPlayback": {
+      "name": "悬停播放音频和视频"
+    },
+    "Henjicc_ImageLibrary_FilenamePosition": {
+      "name": "文件名位置",
+      "options": {
+        "Top left": "左上角",
+        "Top right": "右上角",
+        "Bottom left": "左下角",
+        "Bottom right": "右下角",
+        "Below thumbnail": "缩略图下方"
+      }
+    },
+    "Henjicc_ImageLibrary_RatingPosition": {
+      "name": "星标位置",
+      "options": {
+        "Top left": "左上角",
+        "Top right": "右上角",
+        "Bottom left": "左下角",
+        "Bottom right": "右下角",
+        "Below thumbnail": "缩略图下方"
+      }
+    },
+    "Henjicc_ImageLibrary_TagsPosition": {
+      "name": "标签位置",
+      "options": {
+        "Top left": "左上角",
+        "Top right": "右上角",
+        "Bottom left": "左下角",
+        "Bottom right": "右下角",
+        "Below thumbnail": "缩略图下方"
+      }
+    }
+  }
+}

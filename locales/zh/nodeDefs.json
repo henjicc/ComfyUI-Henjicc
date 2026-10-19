@@ -1,0 +1,330 @@
+{
+  "HenjiccSuperLoader": {
+    "display_name": "超级输入",
+    "inputs": {
+      "media": {
+        "name": "素材与提示词"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "素材"
+      },
+      "1": {
+        "name": "提示词"
+      },
+      "2": {
+        "name": "含有图片"
+      },
+      "3": {
+        "name": "首尾帧模式"
+      },
+      "4": {
+        "name": "预设尺寸"
+      }
+    }
+  },
+  "HenjiccMiniMaxMedia": {
+    "display_name": "MiniMax H3 素材适配",
+    "inputs": {
+      "media": {
+        "name": "素材"
+      },
+      "clip": {
+        "name": "文本编码器"
+      },
+      "vae": {
+        "name": "视频编码器"
+      },
+      "audio_vae": {
+        "name": "音频编码器"
+      },
+      "width": {
+        "name": "输出宽度"
+      },
+      "height": {
+        "name": "输出高度"
+      },
+      "length": {
+        "name": "输出帧数"
+      },
+      "video_megapixels": {
+        "name": "参考视频百万像素"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "正面条件"
+      },
+      "1": {
+        "name": "潜空间"
+      }
+    }
+  },
+  "HenjiccAudioMix": {
+    "display_name": "人声与伴奏混音",
+    "inputs": {
+      "vocals": {
+        "name": "人声"
+      },
+      "backing": {
+        "name": "伴奏"
+      },
+      "vocal_gain_db": {
+        "name": "人声音量 (dB)"
+      },
+      "backing_gain_db": {
+        "name": "伴奏音量 (dB)"
+      },
+      "vocal_offset": {
+        "name": "人声偏移 (秒)"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "音频"
+      }
+    }
+  },
+  "HenjiccResolutionBoard": {
+    "display_name": "尺寸画板",
+    "inputs": {
+      "mode": {
+        "name": "尺寸来源"
+      },
+      "profile": {
+        "name": "模型规格"
+      },
+      "width": {
+        "name": "宽度"
+      },
+      "height": {
+        "name": "高度"
+      },
+      "megapixels": {
+        "name": "百万像素"
+      },
+      "fit": {
+        "name": "等比缩小超限尺寸"
+      },
+      "preset": {
+        "name": "预设尺寸"
+      },
+      "image": {
+        "name": "参考图"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "宽度"
+      },
+      "1": {
+        "name": "高度"
+      }
+    }
+  },
+  "HenjiccQwenReferenceList": {
+    "display_name": "参考图处理",
+    "inputs": {
+      "media": {
+        "name": "素材"
+      },
+      "reference_megapixels": {
+        "name": "每张参考图百万像素（0＝保留）"
+      },
+      "alignment": {
+        "name": "对齐倍数"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "图片组"
+      },
+      "1": {
+        "name": "自动文生图模式"
+      },
+      "2": {
+        "name": "首张原图"
+      },
+      "3": {
+        "name": "提示词"
+      }
+    }
+  },
+  "HenjiccImageListToSlots": {
+    "display_name": "图片组分配",
+    "inputs": {
+      "images": {
+        "name": "图片组"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "图片 1"
+      },
+      "1": {
+        "name": "图片 2"
+      },
+      "2": {
+        "name": "图片 3"
+      },
+      "3": {
+        "name": "图片 4"
+      },
+      "4": {
+        "name": "图片 5"
+      },
+      "5": {
+        "name": "图片 6"
+      },
+      "6": {
+        "name": "图片 7"
+      },
+      "7": {
+        "name": "图片 8"
+      },
+      "8": {
+        "name": "图片 9"
+      },
+      "9": {
+        "name": "图片 10"
+      }
+    }
+  },
+  "HenjiccH3RoleInputs": {
+    "display_name": "MiniMax H3 角色替换素材",
+    "inputs": {
+      "media": {
+        "name": "素材"
+      },
+      "megapixels": {
+        "name": "视频百万像素"
+      },
+      "duration": {
+        "name": "时长（秒）"
+      },
+      "match_source_duration": {
+        "name": "跟随参考视频时长"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "参考帧"
+      },
+      "1": {
+        "name": "宽度"
+      },
+      "2": {
+        "name": "高度"
+      },
+      "3": {
+        "name": "帧数"
+      },
+      "4": {
+        "name": "视频帧"
+      },
+      "5": {
+        "name": "角色图片"
+      },
+      "6": {
+        "name": "提示词"
+      },
+      "7": {
+        "name": "实际时长（秒）"
+      },
+      "8": {
+        "name": "参考图片列表"
+      }
+    }
+  },
+  "HenjiccH3VideoOutput": {
+    "display_name": "MiniMax H3 成片时序",
+    "inputs": {
+      "images": {
+        "name": "生成画面"
+      },
+      "audio": {
+        "name": "生成音频"
+      },
+      "duration": {
+        "name": "时长（秒）"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "视频"
+      }
+    }
+  },
+  "HenjiccOmniPrompt": {
+    "display_name": "Qwen2.5-Omni 多模态提示词助手",
+    "inputs": {
+      "media": {
+        "name": "素材"
+      },
+      "task": {
+        "name": "任务"
+      },
+      "analysis_seconds": {
+        "name": "分析开头秒数"
+      },
+      "max_tokens": {
+        "name": "最大输出长度"
+      },
+      "timeout_seconds": {
+        "name": "推理超时秒数"
+      },
+      "model_name": {
+        "name": "模型"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "文本"
+      }
+    }
+  },
+  "HenjiccVisualPrompt": {
+    "display_name": "Qwen3-VL 提示词优化助手",
+    "inputs": {
+      "media": {
+        "name": "素材"
+      },
+      "clip": {
+        "name": "视觉模型"
+      },
+      "task": {
+        "name": "任务"
+      },
+      "frames_per_second": {
+        "name": "每秒抽帧数"
+      },
+      "segment_seconds": {
+        "name": "每张拼图秒数"
+      },
+      "analysis_seconds": {
+        "name": "分析开头秒数"
+      },
+      "max_tokens": {
+        "name": "最大输出长度"
+      },
+      "pixel_budget_mp": {
+        "name": "总像素预算（MP）"
+      },
+      "custom_instruction": {
+        "name": "自定义要求"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "文本"
+      },
+      "1": {
+        "name": "图片与视频拼图"
+      },
+      "2": {
+        "name": "素材"
+      }
+    }
+  }
+}

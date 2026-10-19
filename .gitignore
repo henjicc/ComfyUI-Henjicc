@@ -1,0 +1,16 @@
+# Local credentials and environments
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+
+# Generated Python / JavaScript files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+node_modules/
+dist/
+build/
+*.egg-info/

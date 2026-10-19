@@ -1,0 +1,305 @@
+{
+  "HenjiccSuperLoader": {
+    "display_name": "Super Input",
+    "inputs": {
+      "media": {
+        "name": "Media and prompt"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "Media"
+      },
+      "1": {
+        "name": "Prompt"
+      },
+      "2": {
+        "name": "Has images"
+      },
+      "3": {
+        "name": "First/last frame mode"
+      },
+      "4": {
+        "name": "Preset size"
+      }
+    }
+  },
+  "HenjiccMiniMaxMedia": {
+    "display_name": "MiniMax H3 Media Conditioning",
+    "inputs": {
+      "media": {
+        "name": "Media"
+      },
+      "clip": {
+        "name": "CLIP"
+      },
+      "vae": {
+        "name": "Video VAE"
+      },
+      "audio_vae": {
+        "name": "Audio VAE"
+      },
+      "width": {
+        "name": "Output width"
+      },
+      "height": {
+        "name": "Output height"
+      },
+      "length": {
+        "name": "Output frames"
+      },
+      "video_megapixels": {
+        "name": "Reference video megapixels"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "Positive"
+      },
+      "1": {
+        "name": "Latent"
+      }
+    }
+  },
+  "HenjiccAudioMix": {
+    "display_name": "Vocal and Backing Mix",
+    "inputs": {
+      "vocals": {
+        "name": "Vocals"
+      },
+      "backing": {
+        "name": "Backing"
+      },
+      "vocal_gain_db": {
+        "name": "Vocal gain (dB)"
+      },
+      "backing_gain_db": {
+        "name": "Backing gain (dB)"
+      },
+      "vocal_offset": {
+        "name": "Vocal offset (seconds)"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "Audio"
+      }
+    }
+  },
+  "HenjiccResolutionBoard": {
+    "display_name": "Resolution Board",
+    "inputs": {
+      "mode": {
+        "name": "Size source"
+      },
+      "profile": {
+        "name": "Model profile"
+      },
+      "width": {
+        "name": "Width"
+      },
+      "height": {
+        "name": "Height"
+      },
+      "megapixels": {
+        "name": "Megapixels"
+      },
+      "fit": {
+        "name": "Fit oversized dimensions"
+      },
+      "preset": {
+        "name": "Preset size"
+      },
+      "image": {
+        "name": "Reference image"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "Width"
+      },
+      "1": {
+        "name": "Height"
+      }
+    }
+  },
+  "HenjiccQwenReferenceList": {
+    "display_name": "Reference Image Processing",
+    "inputs": {
+      "media": {
+        "name": "Media"
+      },
+      "reference_megapixels": {
+        "name": "Reference megapixels (0 = keep)"
+      },
+      "alignment": {
+        "name": "Alignment"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "Images"
+      },
+      "1": {
+        "name": "Text-to-image mode"
+      },
+      "2": {
+        "name": "First original image"
+      },
+      "3": {
+        "name": "Prompt"
+      }
+    }
+  },
+  "HenjiccImageListToSlots": {
+    "display_name": "Image List to Slots",
+    "inputs": {
+      "images": {
+        "name": "Images"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "Image 1"
+      },
+      "1": {
+        "name": "Image 2"
+      },
+      "2": {
+        "name": "Image 3"
+      },
+      "3": {
+        "name": "Image 4"
+      },
+      "4": {
+        "name": "Image 5"
+      },
+      "5": {
+        "name": "Image 6"
+      },
+      "6": {
+        "name": "Image 7"
+      },
+      "7": {
+        "name": "Image 8"
+      },
+      "8": {
+        "name": "Image 9"
+      },
+      "9": {
+        "name": "Image 10"
+      }
+    }
+  },
+  "HenjiccH3RoleInputs": {
+    "display_name": "MiniMax H3 Role Replacement Inputs",
+    "inputs": {
+      "media": {
+        "name": "Media"
+      },
+      "megapixels": {
+        "name": "Video megapixels"
+      },
+      "duration": {
+        "name": "Duration (seconds)"
+      },
+      "match_source_duration": {
+        "name": "Match reference video duration"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "Reference frames"
+      },
+      "1": {
+        "name": "Width"
+      },
+      "2": {
+        "name": "Height"
+      },
+      "3": {
+        "name": "Length"
+      },
+      "4": {
+        "name": "Video frames"
+      },
+      "5": {
+        "name": "Character image"
+      },
+      "6": {
+        "name": "Prompt"
+      },
+      "7": {
+        "name": "Actual duration (seconds)"
+      },
+      "8": {
+        "name": "Reference image list"
+      }
+    }
+  },
+  "HenjiccH3VideoOutput": {
+    "display_name": "MiniMax H3 Video Timing",
+    "inputs": {
+      "images": {
+        "name": "Generated frames"
+      },
+      "audio": {
+        "name": "Generated audio"
+      },
+      "duration": {
+        "name": "Duration (seconds)"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "Video"
+      }
+    }
+  },
+  "HenjiccVisualPrompt": {
+    "display_name": "Qwen3-VL Prompt Optimization Assistant",
+    "inputs": {
+      "media": {
+        "name": "Media"
+      },
+      "clip": {
+        "name": "Vision Model"
+      },
+      "task": {
+        "name": "Task"
+      },
+      "frames_per_second": {
+        "name": "Frames Per Second"
+      },
+      "segment_seconds": {
+        "name": "Seconds Per Sheet"
+      },
+      "analysis_seconds": {
+        "name": "Analyze First Seconds"
+      },
+      "max_tokens": {
+        "name": "Max Output Tokens"
+      },
+      "pixel_budget_mp": {
+        "name": "Total Pixel Budget (MP)"
+      },
+      "custom_instruction": {
+        "name": "Custom instructions"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "Text"
+      },
+      "1": {
+        "name": "Images and Video Sheets"
+      },
+      "2": {
+        "name": "Media"
+      }
+    }
+  },
+  "HenjiccOmniPrompt": {
+    "display_name": "Qwen2.5-Omni Multimodal Prompt Assistant"
+  }
+}

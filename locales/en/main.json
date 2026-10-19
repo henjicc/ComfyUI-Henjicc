@@ -1,0 +1,61 @@
+{
+  "nodeCategories": {
+    "Henjicc": "Henjicc",
+    "Image": "Image",
+    "Media": "Media",
+    "Qwen": "Qwen",
+    "Video": "Video",
+    "Audio": "Audio"
+  },
+  "settingsCategories": {
+    "Henjicc": "Henjicc",
+    "HenjiccImageLibrary": "Resource Library"
+  },
+  "settings": {
+    "Henjicc_ImageLibrary_SingleClickUse": {
+      "name": "Use an asset with a single click"
+    },
+    "Henjicc_ImageLibrary_DoubleClickPreview": {
+      "name": "Preview an asset with a double click"
+    },
+    "Henjicc_ImageLibrary_DoubleClickDelay": {
+      "name": "Double-click detection interval (ms)"
+    },
+    "Henjicc_ImageLibrary_CropThumbnails": {
+      "name": "Crop thumbnails to fill"
+    },
+    "Henjicc_ImageLibrary_InjectLoadImage": {
+      "name": "Enhance image selection in Load Image"
+    },
+    "Henjicc_ImageLibrary_ShowImageNames": {
+      "name": "Always show image filenames"
+    },
+    "Henjicc_ImageLibrary_ShowVideoNames": {
+      "name": "Always show video filenames"
+    },
+    "Henjicc_ImageLibrary_ShowAudioNames": {
+      "name": "Always show audio filenames"
+    },
+    "Henjicc_ImageLibrary_ShowExtensions": {
+      "name": "Show filename extensions"
+    },
+    "Henjicc_ImageLibrary_ShowRatings": {
+      "name": "Show asset star ratings"
+    },
+    "Henjicc_ImageLibrary_ShowTags": {
+      "name": "Show asset tags"
+    },
+    "Henjicc_ImageLibrary_HoverPlayback": {
+      "name": "Play audio and video on hover"
+    },
+    "Henjicc_ImageLibrary_FilenamePosition": {
+      "name": "Filename position"
+    },
+    "Henjicc_ImageLibrary_RatingPosition": {
+      "name": "Star rating position"
+    },
+    "Henjicc_ImageLibrary_TagsPosition": {
+      "name": "Tags position"
+    }
+  }
+}

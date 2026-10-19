@@ -1,0 +1,82 @@
+.henjicc-node-panel {
+    --henjicc-field: var(--comfy-input-bg);
+    --henjicc-text: var(--input-text);
+    --henjicc-muted: var(--descrip-text);
+    --henjicc-border: var(--border-color);
+    --henjicc-hover: var(--content-hover-bg);
+    --henjicc-focus: var(--p-primary-color, var(--input-text));
+    --henjicc-radius: 4px;
+    --henjicc-button-radius: 12px;
+    color: var(--henjicc-text);
+    background: transparent;
+    font: 12px/1.5 var(--henjicc-font, sans-serif);
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    box-sizing: border-box;
+    container-type: inline-size;
+    /* Nodes 2.0 measures DOM widgets in an auto grid row. Content must not
+       enlarge that row before the node's remaining height is distributed. */
+    contain: size;
+}
+.henjicc-node-panel[data-modern="true"] {
+    --henjicc-field: var(--component-node-widget-background, var(--comfy-input-bg));
+    --henjicc-text: var(--component-node-foreground, var(--input-text));
+    --henjicc-muted: var(--component-node-foreground-secondary, var(--descrip-text));
+    --henjicc-border: var(--border-default, var(--border-color));
+    --henjicc-hover: var(--component-node-widget-background-hovered, var(--comfy-input-bg));
+    --henjicc-radius: 6px;
+    --henjicc-button-radius: 6px;
+}
+.henjicc-node-panel *, .henjicc-node-panel *::before, .henjicc-node-panel *::after { box-sizing: border-box; }
+.henjicc-node-panel button, .henjicc-node-panel select {
+    color: var(--henjicc-text);
+    background: var(--henjicc-field);
+    border: 1px solid var(--henjicc-border);
+    border-radius: var(--henjicc-button-radius);
+    padding: 3px 10px;
+    min-width: 0;
+    font: inherit;
+    cursor: pointer;
+}
+.henjicc-node-panel[data-modern="true"] button, .henjicc-node-panel[data-modern="true"] select { border-color: transparent; }
+.henjicc-node-panel button:hover:not(:disabled), .henjicc-node-panel select:hover:not(:disabled) { background: var(--henjicc-hover); }
+.henjicc-node-panel button:disabled { opacity: .5; cursor: default; }
+.henjicc-node-panel :focus-visible { outline: 2px solid var(--henjicc-focus); outline-offset: -2px; }
+.henjicc-node-panel input[type="checkbox"] { accent-color: var(--henjicc-focus); }
+.henjicc-node-panel [hidden] { display: none !important; }
+.henjicc-node-panel .asset-card { position: relative; overflow: hidden; border-radius: var(--henjicc-radius); background: var(--henjicc-field); }
+.henjicc-node-panel .asset-card[data-current="true"]::after { content: ""; position: absolute; inset: 0; border: 2px solid var(--henjicc-focus); border-radius: inherit; pointer-events: none; }
+.henjicc-node-panel .asset-frame { position: relative; display: block; width: 100%; height: 100%; cursor: zoom-in; }
+.henjicc-node-panel .asset-visual { display: block; width: 100%; height: 100%; object-fit: contain; }
+.henjicc-node-panel svg.asset-visual { padding: 34px; color: var(--henjicc-muted); }
+.henjicc-node-panel .asset-card[data-enabled="false"] .asset-visual { opacity: .4; }
+.henjicc-node-panel .asset-shade { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, #0007, #0000 65%); }
+.henjicc-node-panel .asset-number { position: absolute; top: 6px; left: 6px; max-width: calc(100% - 12px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; border: 0; border-radius: 3px; padding: 2px 5px; background: #0005; color: white; font: 12px/1.5 Arial, sans-serif; text-shadow: 0 1px 3px #0008; }
+.henjicc-node-panel .asset-number:hover:not(:disabled) { background: #0007; }
+.henjicc-node-panel .asset-actions { position: absolute; bottom: 6px; right: 6px; display: flex; gap: 4px; opacity: 0; pointer-events: none; }
+.henjicc-node-panel .asset-actions .asset-action { display: grid; place-items: center; width: 26px; height: 26px; padding: 4px; border: 0; border-radius: 4px; background: #0006; color: white; }
+.henjicc-node-panel .asset-actions .asset-action:hover:not(:disabled) { background: #000a; }
+.henjicc-node-panel .asset-actions svg { display: block; width: 18px; height: 18px; }
+.henjicc-node-panel .asset-card:hover .asset-actions, .henjicc-node-panel .asset-card:focus-within .asset-actions { opacity: 1; pointer-events: auto; }
+.henjicc-node-panel .asset-card[data-enabled="false"] .asset-actions { opacity: 1; }
+.henjicc-node-panel .asset-card[data-enabled="false"] .asset-action:not(.asset-toggle) { visibility: hidden; }
+.henjicc-node-panel .asset-card[data-enabled="false"]:hover .asset-action, .henjicc-node-panel .asset-card[data-enabled="false"]:focus-within .asset-action { visibility: visible; }
+.henjicc-node-panel .asset-error { position: absolute; inset: auto 4px 4px; color: white; background: #0008; font-size: 11px; pointer-events: none; }
+.henjicc-node-panel .asset-error:empty { display: none; }
+@media (hover: none) { .henjicc-node-panel .asset-actions { opacity: 1; pointer-events: auto; } }
+.henjicc-media-viewer { width: min(1100px, 94vw); height: min(860px, 90vh); max-width: 96vw; max-height: 94vh; padding: 12px; box-sizing: border-box; border: 1px solid var(--border-color); border-radius: 8px; color: var(--input-text); background: var(--comfy-menu-bg); font: 14px/1.5 Arial, sans-serif; }
+.henjicc-media-viewer[open] { display: flex; flex-direction: column; gap: 10px; }
+.henjicc-media-viewer::backdrop { background: #0009; }
+.henjicc-media-viewer header { display: flex; align-items: center; gap: 10px; flex: none; }
+.henjicc-media-viewer .viewer-label { flex: 1; }
+.henjicc-media-viewer .asset-action { display: grid; place-items: center; width: 32px; height: 32px; padding: 6px; border: 1px solid var(--border-color); border-radius: 5px; color: inherit; background: var(--comfy-input-bg); cursor: pointer; }
+.henjicc-media-viewer .asset-action:disabled { opacity: .4; cursor: default; }
+.henjicc-media-viewer .asset-action svg { width: 20px; height: 20px; }
+.henjicc-media-viewer :focus-visible { outline: 2px solid var(--p-primary-color, var(--input-text)); outline-offset: 2px; }
+.henjicc-media-viewer .viewer-content { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.henjicc-media-viewer img, .henjicc-media-viewer video { display: block; width: 100%; height: 100%; object-fit: contain; }
+.henjicc-media-viewer audio { width: min(720px, 100%); }
+.henjicc-media-viewer .viewer-status { flex: none; color: var(--error-text); }
+.henjicc-media-viewer .viewer-status:empty { display: none; }

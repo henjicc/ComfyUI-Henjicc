@@ -1,0 +1,11 @@
+[project]
+name = "comfyui-henjicc"
+version = "0.1.0"
+description = "Personal ComfyUI media, Qwen, H3 and local audio nodes"
+requires-python = ">=3.13"
+dependencies = ["aiohttp", "av", "numpy", "Pillow"]
+
+# ComfyUI, comfy_api, torch and matching torchaudio are provided by the host.
+# Do not upgrade the host framework to install optional audio capabilities.
+[project.optional-dependencies]
+omni = ["transformers>=5", "soundfile", "librosa", "accelerate"]
