@@ -1,0 +1,5 @@
+# Development files are kept in GitHub, but not installed with the node pack.
+.github/
+rules/
+tests/
+AGENTS.md

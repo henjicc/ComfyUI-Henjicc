@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-henjicc"
 version = "0.1.0"
-description = "Personal ComfyUI media, Qwen, H3 and local audio nodes"
+description = "Media input and library, reference images, resolution tools, local prompt assistants, MiniMax H3 adapters and audio mixing for ComfyUI."
 requires-python = ">=3.10"
 dependencies = ["aiohttp", "av", "numpy", "Pillow"]
 
@@ -9,3 +9,12 @@ dependencies = ["aiohttp", "av", "numpy", "Pillow"]
 # Do not upgrade the host framework to install optional audio capabilities.
 [project.optional-dependencies]
 omni = ["transformers>=5", "soundfile", "librosa", "accelerate"]
+
+[project.urls]
+Repository = "https://github.com/henjicc/ComfyUI-Henjicc"
+Documentation = "https://github.com/henjicc/ComfyUI-Henjicc/blob/main/README.md"
+"Bug Tracker" = "https://github.com/henjicc/ComfyUI-Henjicc/issues"
+
+[tool.comfy]
+PublisherId = "henjicc"
+DisplayName = "ComfyUI-Henjicc · 痕继痕迹"
