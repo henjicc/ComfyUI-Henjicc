@@ -8,7 +8,7 @@ ComfyUI 自定义节点包，提供图片、视频、音频素材输入、参考
 
 将本仓库放入 ComfyUI 的 `custom_nodes/ComfyUI-Henjicc`，使用该 ComfyUI 的 Python 环境安装 [pyproject.toml](pyproject.toml) 声明的依赖，然后重启 ComfyUI、刷新页面。无需 npm 安装或前端构建。
 
-本包要求 Python 3.13 或更高版本，使用 ComfyUI V3 节点接口 `comfy_api.latest`。ComfyUI、PyTorch 和匹配的 torchaudio 由宿主提供，不要使用插件安装过程替换宿主计算环境。依赖声明不代表已验证所有平台及宿主版本。
+本包基础节点要求 Python 3.10 或更高版本，使用 ComfyUI V3 节点接口 `comfy_api.latest`。ComfyUI、PyTorch 和匹配的 torchaudio 由宿主提供，不要使用插件安装过程替换宿主计算环境。依赖声明不代表已验证所有平台及宿主版本；可选功能还须满足其依赖包的 Python 要求。
 
 Qwen2.5-Omni 助手另需 `omni` 可选依赖组及完整本地模型，其他节点不因此需要该模型。模型、第三方节点和权重不随本包提供，不会在注册节点时自动下载安装。
 
