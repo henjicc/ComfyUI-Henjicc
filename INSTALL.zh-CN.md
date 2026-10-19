@@ -9,7 +9,7 @@
 3. 也可以在 Manager 的自定义节点列表搜索 `comfyui-henjicc` 或 `Henjicc` 安装；[Registry 节点页](https://registry.comfy.org/zh/publishers/henjicc/nodes/comfyui-henjicc)可查看发布版本。
 4. 安装完成后重启 ComfyUI、刷新网页，再打开工作流。
 
-若审核尚未完成、Manager 目录未同步，或缺失节点列表没有识别到本包，可能暂时搜不到，请按下面的方法手动安装。工作流里其他作者的节点也需分别安装；模型权重需另行准备。
+若版本仍待审核（Pending）、被标记需复核（Flagged）、Manager 目录未同步，或缺失节点列表没有识别到本包，可能暂时搜不到或无法通过 Manager 安装。可先查看 Registry 状态，并按下面的方法手动安装。工作流里其他作者的节点也需分别安装；模型权重需另行准备。
 
 ## 手动安装
 

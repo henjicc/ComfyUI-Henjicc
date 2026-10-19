@@ -33,7 +33,7 @@
 
 将分享的工作流 `.json` 拖入 ComfyUI，或通过菜单打开。若提示缺少本包节点，打开 **Manager → 安装缺失节点（Install Missing Custom Nodes）**，找到本包后安装；也可以在 Manager 的自定义节点列表搜索 `comfyui-henjicc` 或 `Henjicc`。
 
-安装完成后重启 ComfyUI、刷新网页，再打开工作流。[Registry 节点页](https://registry.comfy.org/zh/publishers/henjicc/nodes/comfyui-henjicc)可查看发布版本。审核、目录同步或节点识别尚未完成时，可能暂时搜不到，请使用下面的手动安装方法。工作流所用的其他节点和模型需另外准备。
+安装完成后重启 ComfyUI、刷新网页，再打开工作流。[Registry 节点页](https://registry.comfy.org/zh/publishers/henjicc/nodes/comfyui-henjicc)可查看发布版本。版本待审核（Pending）、需复核（Flagged）、目录同步或节点识别尚未完成时，可能暂时搜不到或无法通过 Manager 安装；请先查看 Registry 状态，也可使用下面的手动安装方法。工作流所用的其他节点和模型需另外准备。
 
 ### 手动安装
 
