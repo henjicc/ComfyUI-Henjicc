@@ -29,7 +29,15 @@
 
 ## 安装
 
-### 1. 放入自定义节点目录
+### 通过 Manager 安装
+
+将分享的工作流 `.json` 拖入 ComfyUI，或通过菜单打开。若提示缺少本包节点，打开 **Manager → 安装缺失节点（Install Missing Custom Nodes）**，找到本包后安装；也可以在 Manager 的自定义节点列表搜索 `comfyui-henjicc` 或 `Henjicc`。
+
+安装完成后重启 ComfyUI、刷新网页，再打开工作流。[Registry 节点页](https://registry.comfy.org/zh/publishers/henjicc/nodes/comfyui-henjicc)可查看发布版本。审核、目录同步或节点识别尚未完成时，可能暂时搜不到，请使用下面的手动安装方法。工作流所用的其他节点和模型需另外准备。
+
+### 手动安装
+
+#### 1. 放入自定义节点目录
 
 在 **ComfyUI 根目录**执行：
 
@@ -50,7 +58,7 @@ ComfyUI/
 
 已有同名目录时先确认它是否为当前安装，避免嵌套解压或安装两份。
 
-### 2. 安装基础依赖
+#### 2. 安装基础依赖
 
 先激活 **运行 ComfyUI 的 Python 环境**，再执行：
 
@@ -62,7 +70,7 @@ python -m pip install aiohttp av numpy Pillow
 
 使用 Qwen2.5-Omni 助手时，另外准备 `omni` 可选依赖组及完整本地模型，详见下文。其他节点不需要为此安装 Omni 模型。
 
-### 3. 重启并确认加载
+#### 3. 重启并确认加载
 
 重启 ComfyUI，然后刷新浏览器。在节点库中搜索 `Henjicc`，应能看到“超级输入”“参考图处理”“尺寸画板”等节点。原生 LoadImage 也会出现“资源库”入口。
 
@@ -196,6 +204,12 @@ python -m unittest discover -s tests -v
 ```shell
 node --test tests/*.test.mjs
 ```
+
+### 发布更新
+
+发布由 [GitHub Actions](.github/workflows/publish.yml) 执行，使用仓库的 Actions secret `REGISTRY_ACCESS_TOKEN`；密钥不写入代码。首次配置或密钥失效时，维护者需将 Registry 发布密钥保存至 GitHub 仓库的 **Settings → Secrets and variables → Actions**。
+
+准备发布时，更新 `pyproject.toml` 中的 `version`（如 `0.1.1` → `0.1.2`），在 [更新记录](CHANGELOG.md) 添加对应版本说明，再推送到 `main`。只有版本号变化才自动上传；普通代码、文档或其他元数据改动不会上传。可在 Actions 手动运行以重试，已上传的版本会跳过。上传成功后仍需等待 Registry 审核及 Manager 目录同步。
 
 ## 问题反馈
 

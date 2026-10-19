@@ -49,3 +49,4 @@ template_state: ready
 - 使用实际宿主的 Python，并将宿主根目录加入 `PYTHONPATH`，执行 `-m unittest discover -s tests -v`；前端使用 `node --test tests/*.test.mjs`。不在这里保存个人绝对路径、固定端口、硬件清单或本机测试流水账。
 - 控制宿主前按 [控制操作规程](comfyui-nodes.md#控制操作规程) 核验服务、队列及活动页面。纯文档和规则变更无需启动服务；节点联调仅运行任务所需的最小图，不修改用户日常工作流。
 - 源码、schema、依赖配置和测试是实现事实入口；README 说明节点功能，规则维护流程见 [rule-maintenance.md](rule-maintenance.md)。`ready` 保持不变，日常整理不重复初始化。
+- Registry 发布入口为 `.github/workflows/publish.yml`，仅 main 分支版本号变化或手动触发时执行，已上传版本跳过；版本在 `pyproject.toml`，发布说明在 `CHANGELOG.md`。发布依赖 GitHub Actions secret `REGISTRY_ACCESS_TOKEN`，密钥不得提交；上传成功与 Registry 审核、Manager 可安装状态分别核验。
