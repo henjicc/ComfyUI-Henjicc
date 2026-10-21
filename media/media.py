@@ -16,7 +16,7 @@ from ..image.generation_presets import number
 VIDEO = {".mp4", ".mov", ".webm", ".mkv"}
 AUDIO = {".wav", ".mp3", ".flac", ".ogg", ".m4a"}
 MEDIA_EXTENSIONS = EXTENSIONS | VIDEO | AUDIO
-PROFILES = {"general", "qwen", "minimax_reference", "minimax_frames"}
+PROFILES = {"general", "qwen", "fibo2", "minimax_reference", "minimax_frames"}
 EMPTY_MEDIA = '{"version":1,"profile":"general","items":[],"prompt":[]}'
 MAX_FILE_BYTES = 512 * 1024 * 1024
 MAX_VIDEO_PIXELS = 192 * 1024 * 1024
@@ -55,12 +55,16 @@ def connected_profile(profile, prompt, node_id):
             kind = node.get("class_type")
             if kind in qwen:
                 families.add("qwen")
+            elif kind == "TextEncodeFibo2":
+                families.add("fibo2")
             elif kind in minimax:
                 families.add("minimax")
             else:
                 pending.append((str(consumer_id), None))
     if len(families) > 1:
-        fail("同时连接了千问和 MiniMax，请分别使用超级输入节点", "Qwen and MiniMax are both connected; use separate Super Input nodes")
+        fail("同时连接了不同模型，请分别使用超级输入节点", "Different model families are both connected; use separate Super Input nodes")
+    if "fibo2" in families:
+        return "fibo2"
     if "qwen" in families:
         return "qwen"
     if "minimax" in families:
@@ -194,7 +198,7 @@ def parse_media(value, *, prompt=None, node_id=None):
         if part["ref"] not in ids:
             fail("提示词引用的素材已删除，请移除该引用", "A referenced asset was removed; remove its prompt reference")
     profile = state["profile"] = connected_profile(state["profile"], prompt, node_id)
-    if profile in {"qwen", "minimax_frames"} and (counts["video"] or counts["audio"]):
+    if profile in {"qwen", "fibo2", "minimax_frames"} and (counts["video"] or counts["audio"]):
         fail("当前模式只能使用图片", "This mode accepts images only")
     if profile == "qwen" and counts["image"] > 10:
         fail("千问最多使用 10 张参考图", "Qwen supports up to 10 reference images")
@@ -228,7 +232,9 @@ def reference_labels(state):
                 continue
             counts[kind] += 1
             name = {"image": "Picture", "video": "Video", "audio": "Audio"}[kind]
-            labels[(item["id"], "main")] = f"<{name} {counts[kind]}>" if minimax else f"<{kind}{counts[kind]}>"
+            labels[(item["id"], "main")] = (f"<{name} {counts[kind]}>" if minimax else
+                                          f"<image_{counts[kind]}>" if state["profile"] == "fibo2" and kind == "image" else
+                                          f"<{kind}{counts[kind]}>")
             if kind == "video" and item.get("soundtrack"):
                 counts["audio"] += 1
                 labels[(item["id"], "audio")] = f"<Audio {counts['audio']}>" if minimax else f"<audio{counts['audio']}>"

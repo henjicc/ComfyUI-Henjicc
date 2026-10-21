@@ -20,6 +20,20 @@ test("typed Chinese and spaced English aliases bind to stable media identities",
 });
 import { connectedProfile, profilesForNode } from "../web/media/connection.js";
 
+test("Fibo detects image conditioning and keeps underscore references stable when reordered", () => {
+    const graph = { refs: { class_type: "HenjiccQwenReferenceList", inputs: { media: ["source", 0] } },
+        encoder: { class_type: "TextEncodeFibo2", inputs: { "images.image_1": ["refs", 0] } } };
+    assert.equal(connectedProfile("qwen", graph, "source"), "fibo2");
+    const state = parseMedia(JSON.stringify({ version: 1, profile: "fibo2", items: [
+        { id: "a", path: "a.png" }, { id: "b", path: "b.png" }], prompt: ["Use <image_1> with <image_2>"] }));
+    assert.deepEqual(state.prompt.filter(p => typeof p !== "string").map(p => p.ref), ["a", "b"]);
+    moveMedia(state, "a", 1);
+    assert.equal(state.prompt[1].ref, "a");
+    assert.equal(mediaError(state), "");
+    state.items.push({ id: "v", path: "v.mp4" });
+    assert.equal(mediaError(state), "当前模式只能使用图片");
+});
+
 test("generic references detect a model only through the downstream native encoder", () => {
     const graph = { refs: { class_type: "HenjiccQwenReferenceList", inputs: { media: ["source", 0] } },
         slots: { class_type: "HenjiccImageListToSlots", inputs: { images: ["refs", 0] } } };

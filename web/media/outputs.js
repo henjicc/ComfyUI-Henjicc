@@ -39,7 +39,7 @@ export function syncMediaOutputs(node, data, profiles, t) {
     const visible = new Set(["media", "prompt"]);
     if (all || profiles.some(profile => profile.startsWith("minimax"))) visible.add("first_last");
     if (all || (data.preset?.width != null && data.preset?.height != null)) visible.add("preset");
-    if (all) visible.add("has_images");
+    if (all || profiles.includes("fibo2")) visible.add("has_images");
     for (let index = node.outputs.length - 1; index >= 2; index--) {
         const output = node.outputs[index];
         if (!visible.has(output.name) && !node.isOutputConnected(index)) { node.removeOutput(index); changed = true; }

@@ -22,6 +22,12 @@ test("API serialization normalizes manual reference aliases without mutating the
 });
 const t = text => text;
 
+test("Fibo exposes the image-presence switch without unrelated MiniMax ports", () => {
+    const n = node();
+    syncMediaOutputs(n, {}, ["fibo2"], t);
+    assert.deepEqual(names(n), ["media", "prompt", "has_images"]);
+});
+
 test("reopening compact slots keeps preset type before the host's index-based merge", () => {
     const n = node();
     const saved = [ {name:"media"}, {name:"prompt"}, {name:"preset",type:"HENJICC_PRESET",links:[10]} ];

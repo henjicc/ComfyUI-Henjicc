@@ -12,11 +12,13 @@ export function connectedProfile(profile, prompt, nodeId, onAdapter) {
                 && String(link[0]) === sourceId && (slot === null || link[1] === slot))) continue;
             if (["HenjiccMiniMaxMedia", "HenjiccH3RoleInputs"].includes(node.class_type)) onAdapter?.(node.class_type);
             if (qwen.has(node.class_type)) families.add("qwen");
+            else if (node.class_type === "TextEncodeFibo2") families.add("fibo2");
             else if (minimax.has(node.class_type)) families.add("minimax");
             else pending.push([id, null]);
         }
     }
-    if (families.size > 1) throw new Error("同时连接了千问和 MiniMax，请分别使用超级输入节点");
+    if (families.size > 1) throw new Error("同时连接了不同模型，请分别使用超级输入节点");
+    if (families.has("fibo2")) return "fibo2";
     if (families.has("qwen")) return "qwen";
     if (families.has("minimax")) return profile === "minimax_frames" ? profile : "minimax_reference";
     return "general";

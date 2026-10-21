@@ -1,8 +1,8 @@
-export const profiles = { general: "通用素材", qwen: "千问图片", minimax_reference: "MiniMax H3 参考生视频", minimax_frames: "MiniMax H3 首尾帧" };
+export const profiles = { general: "通用素材", qwen: "千问图片", fibo2: "Fibo 2.0", minimax_reference: "MiniMax H3 参考生视频", minimax_frames: "MiniMax H3 首尾帧" };
 
 // Resolve only existing per-kind ordinals; persisted references keep stable IDs.
 export function referenceMatches(text, refs) {
-    const pattern = /<\s*(image|picture|video|audio|图片|图像|视频|音频)\s*([1-9]\d*)\s*>|(图片|图像|视频|音频)\s*([1-9]\d*)/gi;
+    const pattern = /<\s*(image|picture|video|audio|图片|图像|视频|音频)[\s_]*([1-9]\d*)\s*>|(图片|图像|视频|音频)\s*([1-9]\d*)/gi;
     const names = { image: "image", picture: "image", video: "video", audio: "audio", 图片: "image", 图像: "image", 视频: "video", 音频: "audio" };
     const groups = { image: [], video: [], audio: [] };
     for (const ref of refs) groups[ref.track === "audio" ? "audio" : kind(ref.path)].push(ref);
@@ -71,7 +71,7 @@ export function mediaError(state) {
     const counts = { image: 0, video: 0, audio: 0 };
     for (const item of state.items) counts[kind(item.path)]++;
     if (state.items.length > 24) return "最多添加 24 个素材";
-    if (["qwen", "minimax_frames"].includes(state.profile) && (counts.video || counts.audio)) return "当前模式只能使用图片";
+    if (["qwen", "fibo2", "minimax_frames"].includes(state.profile) && (counts.video || counts.audio)) return "当前模式只能使用图片";
     if (state.profile === "qwen" && counts.image > 10) return "千问最多使用 10 张参考图";
     if (state.profile === "minimax_frames" && counts.image > 2) return "首尾帧模式最多使用 2 张图片";
     if (state.profile === "minimax_reference" && (counts.image > 9 || counts.video > 3 || counts.audio > 3 || state.items.length > 12)) return "MiniMax 参考素材超过上限";

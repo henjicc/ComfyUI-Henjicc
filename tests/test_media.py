@@ -23,6 +23,24 @@ media = importlib.import_module("henjicc_media_test.media.media")
 
 
 class MediaTests(unittest.TestCase):
+    def test_fibo_connections_compile_reordered_references_without_qwen_limits(self):
+        state = {"version": 1, "profile": "qwen", "items": [
+            {"id": str(i), "path": "a.png"} for i in range(16)], "prompt": [{"ref": "0"}, " and ", {"ref": "15"}]}
+        graph = {"refs": {"class_type": "HenjiccQwenReferenceList", "inputs": {"media": ["source", 0]}},
+                 "slots": {"class_type": "HenjiccImageListToSlots", "inputs": {"images": ["refs", 0]}},
+                 "encoder": {"class_type": "TextEncodeFibo2", "inputs": {"images.image_1": ["slots", 0]}}}
+        parsed = media.parse_media(json.dumps(state), prompt=graph, node_id="source")
+        self.assertEqual(parsed["profile"], "fibo2")
+        self.assertEqual(media.compile_prompt(parsed), "<image_1> and <image_16>")
+        parsed["items"].reverse()
+        self.assertEqual(media.compile_prompt(parsed), "<image_16> and <image_1>")
+        state["items"] = [{"id": "0", "path": "v.mp4"}]
+        state["prompt"] = []
+        with self.assertRaisesRegex(ValueError, "images only"):
+            media.parse_media(json.dumps(state), prompt=graph, node_id="source")
+        state["items"] = []
+        self.assertEqual(media.parse_media(json.dumps(state), prompt=graph, node_id="source")["profile"], "fibo2")
+
     def test_generic_references_preserve_order_alpha_and_support_more_than_ten(self):
         nodes = importlib.import_module("henjicc_media_test.media.media_nodes")
         Image.new("RGBA", (71, 45), (255, 0, 0, 128)).save(self.root / "a.png")
@@ -280,14 +298,15 @@ class MediaTests(unittest.TestCase):
         with patch.object(nodes.folder_paths, "get_input_directory", return_value=str(self.root)):
             result = nodes.HenjiccQwenReferenceList.execute(state, 0).result
             self.assertEqual(result, ([], True, None, ""))
-            self.assertEqual(images.HenjiccImageListToSlots.execute(result[0]).result, (None,) * 10)
+            self.assertEqual(images.HenjiccImageListToSlots.execute(result[0]).result, (None,) * 16)
             for i in range(10):
                 Image.new("RGBA", (32 * (i + 1), 32), (i * 20, 0, 0, 128)).save(self.root / f"{i}.png")
             state["items"] = [{"id": str(i), "path": f"{i}.png"} for i in range(10)]
             result = nodes.HenjiccQwenReferenceList.execute(state, 0).result
             slots = images.HenjiccImageListToSlots.execute(result[0]).result
             self.assertFalse(result[1])
-            for i, image in enumerate(slots):
+            self.assertTrue(all(image is None for image in slots[10:]))
+            for i, image in enumerate(slots[:10]):
                 self.assertEqual(image.shape, (1, 32, 32 * (i + 1), 4))
                 self.assertAlmostEqual(image[0, 0, 0, 0].item(), i * 20 / 255)
                 self.assertAlmostEqual(image[0, 0, 0, 3].item(), 128 / 255)
@@ -299,7 +318,8 @@ class MediaTests(unittest.TestCase):
         torch.testing.assert_close(slots[0], batch[:1])
         torch.testing.assert_close(slots[1], batch[1:])
         self.assertEqual(slots[2].shape, (1, 64, 32, 4))
-        for invalid in ([batch] * 6, [None], [torch.zeros(1, 32, 32, 1)]):
+        self.assertEqual(len(nodes.HenjiccImageListToSlots.execute([batch] * 8).result), 16)
+        for invalid in ([batch] * 9, [None], [torch.zeros(1, 32, 32, 1)]):
             with self.assertRaises(ValueError):
                 nodes.HenjiccImageListToSlots.execute(invalid)
 

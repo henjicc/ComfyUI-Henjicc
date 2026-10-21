@@ -33,7 +33,7 @@ const english = {
     "读取预设失败": "Could not load presets",
     "自动识别": "Auto-detect", "MiniMax 任务": "MiniMax task", "未连接适配节点": "No adapter connected", "无法自动识别": "Cannot auto-detect",
     "按实例识别": "Detected per instance",
-    "同时连接了千问和 MiniMax，请分别使用超级输入节点": "Qwen and MiniMax are both connected; use separate Super Input nodes",
+    "同时连接了不同模型，请分别使用超级输入节点": "Different model families are both connected; use separate Super Input nodes",
     "超级输入": "Super Input", "通用素材": "General media", "千问图片": "Qwen Image",
     "素材预览": "Media preview", "上一项": "Previous item", "下一项": "Next item",
     "预览 {name}": "Preview {name}", "引用 {name}": "Reference {name}",

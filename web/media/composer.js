@@ -70,7 +70,7 @@ export class MediaComposer {
             const graph = this.node.graph.rootGraph ?? this.node.graph;
             const { output } = await (exported ?? this.app.graphToPrompt(graph));
             detectedProfiles = profilesForNode(parseMedia(this.state.value).profile, output, graph, this.node, type => adapters.add(type));
-            profile = detectedProfiles.find(value => value.startsWith("minimax")) ?? detectedProfiles.find(value => value === "qwen") ?? "general";
+            profile = detectedProfiles.find(value => value.startsWith("minimax")) ?? detectedProfiles.find(value => ["qwen", "fibo2"].includes(value)) ?? "general";
         } catch (e) { error = e.message; }
         if (this.disposed || revision !== this.connectionRevision) return;
         const roleOnly = adapters.has("HenjiccH3RoleInputs") && !adapters.has("HenjiccMiniMaxMedia");
@@ -253,8 +253,8 @@ export class MediaComposer {
             });
             detection.append(this.modeMenu.button);
         } else {
-            const label = this.connectionError ? this.t("无法自动识别") : data.profile === "qwen"
-                ? `${this.t("千问图片")} · ${this.t(data.items.some(item => kind(item.path) === "image") ? "图片编辑" : "文生图")}`
+            const label = this.connectionError ? this.t("无法自动识别") : ["qwen", "fibo2"].includes(data.profile)
+                ? `${this.t(profiles[data.profile])} · ${this.t(data.items.some(item => kind(item.path) === "image") ? "图片编辑" : "文生图")}`
                 : this.t("通用素材");
             detection.append(el("span", label, "media-detection-value"));
         }

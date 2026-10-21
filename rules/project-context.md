@@ -19,7 +19,7 @@ template_state: ready
 | `__init__.py` | `comfy_entrypoint`、十个节点注册、资源路由及提交回调 |
 | `library/image_library.py`、`library/audio_waveform.py` | input/output/temp 资源访问、评分标签及有界音频波形缓存 |
 | `media/media.py`、`media/media_nodes.py` | 素材序列化、稳定引用、路径边界、解码、模型连接识别及条件适配 |
-| `image/image_collection.py`、`image/image_nodes.py` | 有界图片读取、缩放、图片列表与十槽分配 |
+| `image/image_collection.py`、`image/image_nodes.py` | 有界图片读取、缩放、图片列表与十六槽分配 |
 | `image/generation_presets.py`、`image/preset_nodes.py` | 预设、尺寸计算及共用预览接口 |
 | `video/video_preprocessing.py`、`video/video_nodes.py` | MiniMax H3 素材时序及同步音画输出 |
 | `audio/music.py`、`audio/music_nodes.py` | 标准 AUDIO 的人声与伴奏混音 |
@@ -36,7 +36,7 @@ template_state: ready
 - `HENJICC_MEDIA` 保存稳定素材 ID、引用和可选预设；删除素材不重定向引用，替换保留身份。视频原声显式开启，引用编号随实际类型和顺序编译；用户提示词本身不翻译。
 - 模型 profile 以实际执行连接派生。前端通过宿主 `graphToPrompt` 解析虚拟路由，后端以 hidden prompt 为权威；HTTP 提交回调仅更新执行输入中的连接缓存标记，不改保存的 UI 工作流。
 - 超级输入按需显示输出，后端输出顺序固定。提交回调将 `_output_names` 转为固定编号；没有映射的旧 API 图保持原编号，未解析映射拒绝执行。直接嵌入执行器需调用 `prepare_media_prompt` 或提供固定编号 API 图。
-- `HenjiccQwenReferenceList` 保留内部 ID，实际为通用参考图处理，输出标准 IMAGE 列表并保留 RGBA、独立尺寸和顺序。十图限制属于千问及十槽分配器，不扩散到通用素材。
+- `HenjiccQwenReferenceList` 保留内部 ID，实际为通用参考图处理，输出标准 IMAGE 列表并保留 RGBA、独立尺寸和顺序。千问的十图限制不扩散到通用素材；分配器提供十六个独立槽以连接 Fibo 等原生编码器。超级输入识别 Fibo 2.0 后编译 `<image_N>` 引用，不套用千问编号。
 - 尺寸预设只管理提示词与可选尺寸，不干预模型、种子或采样参数。画板预览与执行共用 Python 规则；参考图预算独立于输出画布。未知变换不能用源图尺寸伪装执行结果。
 - H3 素材和输出节点保持原生 24 fps、17k+5 模型网格及同步裁音画。参考图、源视频和音频支持范围以 schema 与执行校验为准，不将某个工作流的配方写成节点默认行为。
 - Qwen3-VL 助手使用完整语言模型的图片路径，视频拼图不能称为原生视频推理。输出素材只更新提示词，保留引用、音频及预设；自动任务依据真实下游连接参与缓存。
